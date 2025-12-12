@@ -10,8 +10,10 @@ def load_model():
         with open("scaler.pkl", "rb") as f:
             scaler = pickle.load(f)
         return model, scaler
-    except:
+    except Exception as e:
+        st.error(f"Error loading files: {e}")
         return None, None
+
 
 model, scaler = load_model()
 
@@ -94,3 +96,4 @@ else:
 
         if confidence is not None:
             st.write(f"**Confidence:** {confidence:.2f}%")
+
